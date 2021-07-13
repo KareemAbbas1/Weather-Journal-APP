@@ -1,20 +1,69 @@
 /* Global Variables */
 
-const console = require("console");
+//const console = require("console");
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-const apiKey 
+const apiKey  
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const generate = document.querySelector('#generate');
 
 generate.addEventListener("click", async ()=>{
     const zipCode = document.querySelector('#zip').value
 
     if(!zipCode) {
-        alert('please enter your zip code!')
+        alert('Please enter your zip code!')
         return
     }
 
@@ -27,3 +76,4 @@ generate.addEventListener("click", async ()=>{
 
    
 })
+*/
