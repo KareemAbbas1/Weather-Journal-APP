@@ -6,10 +6,31 @@
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-const apiKey = "b01ed52bc8bbfa1ecbf22a4140ed00ce"
+// Declaring a variable to hold the API key
+const apiKey = "b01ed52bc8bbfa1ecbf22a4140ed00ce";
 
-/* Open Weather Map Current-Weather endpoint */
-`api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`
+// Identifying the generate Button
+const generate = document.querySelector('#generate');
+
+generate.addEventListener('click', async () => {
+    const zipCode = document.querySelector('#zip').value
+    
+    // Validation to detect if the user entered a correctly formated zip code
+    if(!zipCode){
+        alert("Please enter a valid zip code")
+        return
+    }
+    
+    /* API call for the Open Weather Map's Current-Weather endpoint */
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`)
+
+    // Converting the response to a JS object
+    const data = await response.json()
+    
+    // Declaring a variable to only hold the temp data from the whole data object
+    const temp = data.main.temp;
+});
+
 
 
 
