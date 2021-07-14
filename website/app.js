@@ -26,13 +26,9 @@ const mainFunction = () => {
     else {
         getWeatherData(baseUrl, zipCode, apiKey)
 
-          .then(function(){
-              postData(temp, content)
-          })
+          .then(postData(temp, content))
 
-          .then(function(){
-              updateUI()
-          })
+          .then(updateUI)
 
           .catch(function(error) {
               console.log(error);
