@@ -1,103 +1,99 @@
 /* Global Variables */
-
-//const console = require("console");
+const apiKey = "b01ed52bc8bbfa1ecbf22a4140ed00ce";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-// Declaring a variable to hold the API key
-const apiKey = "b01ed52bc8bbfa1ecbf22a4140ed00ce";
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Identifying the generate Button
 const generate = document.querySelector('#generate');
 
-generate.addEventListener('click', async () => {
+
+const mainFunction = () => {
+
     const zipCode = document.querySelector('#zip').value
-    
+
+    const content = document.querySelector('#feelings').value
+
+    const baseUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`;
+
     // Validation to detect if the user entered a correctly formated zip code
-    if(!zipCode){
+    if (!zipCode){
         alert("Please enter a valid zip code")
         return
     }
-    
-    /* API call for the Open Weather Map's Current-Weather endpoint */
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`)
 
-    // Converting the response to a JS object
-    const data = await response.json()
-    
-    // Declaring a variable to only hold the temp data from the whole data object
-    const temp = data.main.temp;
-});
+    else {
+        getWeatherData(baseUrl, zipCode, apiKey)
 
+          .then(function(){
+              postData()
+          })
 
+          .then(function(){
+              updateUI()
+          })
 
+          .catch(function(error) {
+              console.log(error);
+          })
+        
+    }
+};
 
+generate.addEventListener('click', mainFunction);
 
+const getWeatherData = async(baseUrl, zipCode, apiKey) =>{
 
+    const response = await fetch(baseUrl + zipCode + apiKey);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const generate = document.querySelector('#generate');
-
-generate.addEventListener("click", async ()=>{
-    const zipCode = document.querySelector('#zip').value
-
-    if(!zipCode) {
-        alert('Please enter your zip code!')
-        return
+    try {
+        const data = await response.json()
+        const temp = data.main.temp;
+        return temp;
     }
 
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`)
+    catch (error) {
+        console.log('error', error);
+    }
+};
 
-    const data = await res.json
+const postData = async(url = '', data = {}) =>{
+    const request =  await fetch('/recieveData', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            data: newDate,
+            temp: temp,
+            content: content
+        })
+    });
 
+    const localApiRes = await fetch('/tempData', {
+        credentials: 'same-origin'
+    });
 
-    const temp = console.logdata.main.temp;
+    const finalData = await localApiRes.json()
+    
+    return finalData
+    //console.log('finalData', finalData);
+};
 
-   
-})
-*/
+const updateUI = async () => {
+    const request = await fetch('/recieveData');
+
+    try {
+        const allData = await request.json()
+
+        document.getElementById('date').innerHTML = allData.date;
+        document.getElementById('temp').innerHTML = allData.temp;
+        document.getElementById('content').innerHTML = allData.content;
+    }
+
+    catch (error) {
+        console.log('error', error);
+    }
+};
