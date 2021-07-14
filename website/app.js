@@ -30,8 +30,10 @@ const mainFunction = () => {
               postData(temp, content)
             })
 
-          .then(updateUI)
-
+          .then((finalData) => {
+              updateUI(finalData)
+          })
+          
           .catch(function(error) {
               console.log(error);
           })
