@@ -26,7 +26,9 @@ const mainFunction = () => {
     else {
         getWeatherData(baseUrl, zipCode, apiKey)
 
-          .then(postData(temp, content))
+          .then(()=>{
+              postData(temp, content)
+            })
 
           .then(updateUI)
 
@@ -54,7 +56,7 @@ const getWeatherData = async(baseUrl, zipCode, apiKey) =>{
     }
 };
 
-const postData = async(url = '', data = {}) =>{
+const postData = async(temp, content) =>{
     const request =  await fetch('/recieveData', {
         method: 'POST',
         credentials: 'same-origin',
