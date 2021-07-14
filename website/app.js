@@ -5,8 +5,11 @@
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-const apiKey 
 
+const apiKey = "b01ed52bc8bbfa1ecbf22a4140ed00ce"
+
+/* Open Weather Map Current-Weather endpoint */
+`api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`
 
 
 
