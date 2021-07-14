@@ -27,7 +27,7 @@ const mainFunction = () => {
         getWeatherData(baseUrl, zipCode, apiKey)
 
           .then(function(){
-              postData()
+              postData(temp, content)
           })
 
           .then(function(){
@@ -45,7 +45,7 @@ generate.addEventListener('click', mainFunction);
 
 const getWeatherData = async(baseUrl, zipCode, apiKey) =>{
 
-    const response = await fetch(baseUrl + zipCode + apiKey);
+    const response = await fetch(baseUrl);
 
     try {
         const data = await response.json()
@@ -82,11 +82,11 @@ const postData = async(url = '', data = {}) =>{
     //console.log('finalData', finalData);
 };
 
-const updateUI = async () => {
-    const request = await fetch('/recieveData');
+const updateUI = async (finalData) => {
+    //const request = await fetch('/recieveData');
 
     try {
-        const allData = await request.json()
+        const allData = await finalData
 
         document.getElementById('date').innerHTML = allData.date;
         document.getElementById('temp').innerHTML = allData.temp;
