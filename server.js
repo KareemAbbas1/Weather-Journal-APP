@@ -1,13 +1,14 @@
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
+// Declaring a variable to store the port value
 const port = 8000;
 
 /* Dependencies */
 
 // Require Express to run server and routes
 const express = require('express');
-// Require Body-Parser for Middleware
+// Require Body-Parser for Middleware to parse the final data that will be passed throug routes on the server
 const bodyParser = require('body-parser');
 // Require CORS for Cross-Origin Resource Sharing
 const cors = require('cors');
