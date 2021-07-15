@@ -28,6 +28,7 @@ const mainFunction = () => {
 
           .then(()=>{
               postData(temp, content)
+              return postData(temp, content)
             })
 
           .then((finalData) => {
@@ -70,6 +71,7 @@ const postData = async(temp, content) =>{
             temp: temp,
             content: content
         })
+    
     });
 
     const localApiRes = await fetch('/tempData', {
@@ -79,7 +81,6 @@ const postData = async(temp, content) =>{
     const finalData = await localApiRes.json()
     
     return finalData
-    //console.log('finalData', finalData);
 };
 
 const updateUI = async (finalData) => {
@@ -88,7 +89,7 @@ const updateUI = async (finalData) => {
     try {
         const allData = await finalData
 
-        document.getElementById('date').innerHTML = allData.date;
+        document.getElementById('date').innerHTML = allData.data;
         document.getElementById('temp').innerHTML = allData.temp;
         document.getElementById('content').innerHTML = allData.content;
     }
