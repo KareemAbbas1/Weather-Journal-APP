@@ -59,18 +59,14 @@ const getWeatherData = async(baseUrl, zipCode, apiKey) =>{
     }
 };
 
-const postData = async(temp, content) =>{
-    const request =  await fetch('/recieveData', {
+const postData = async(url = '/recieveData', data= {}) =>{
+    const request =  await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            data: newDate,
-            temp: temp,
-            content: content
-        })
+        body: JSON.stringify(data)
     
     });
 
