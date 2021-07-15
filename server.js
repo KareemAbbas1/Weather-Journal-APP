@@ -35,11 +35,11 @@ app.listen(port, () => {
     console.log(`Server is running on localhost: ${port}`)
 });
 
-// A GET route to return the projectData(sends the data to the client)
+// A GET route to return the projectData(returns the temp based on the zipcode entered by the client)
 app.get('/tempData', (req, res) => {
     res.send(projectData)
 });
-
+// A POST route with the final data(date, temp, feeling)
 app.post('/recieveData', (req, res) => {
     projectData = {...req.body}
     res.send()
