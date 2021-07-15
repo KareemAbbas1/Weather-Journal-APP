@@ -1,1 +1,3 @@
 node_modules
+.getattributes
+package-lock.json
