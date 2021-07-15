@@ -13,7 +13,7 @@
 ## Description
 <br  />
 
-Weather Journal Application that uses an external web **API** and dynamically updates its **UI.**
+Weather Journal Application that uses an external web **API** and passes the data back and forth between the Serve-side endpoint & the Client-side endpoint, then  dynamically updates its **UI.**
 <br  /> <br  /> <br />
 
 
