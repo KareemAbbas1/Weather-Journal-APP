@@ -26,10 +26,11 @@ const mainFunction = () => {
     else {
         getWeatherData(baseUrl, zipCode, apiKey)
 
-          .then(()=>{
-              postData(temp, content)
-              return postData(temp, content)
-            })
+          .then(data => postData('/recieveData', {
+              temp: data.main.temp,
+              date: newDate,
+              content: content
+          }))
 
           .then((finalData) => {
               updateUI(finalData)
